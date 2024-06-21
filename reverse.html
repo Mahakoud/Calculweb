@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générer le brin complémentaire inversé d'un fragment d'ADN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Générer le brin complémentaire inversé d'un fragment d'ADN</h1>
+    <input type="text" id="dnaInput" placeholder="Entrez le fragment d'ADN">
+    <button onclick="generateComplementaryReverseStrand()">Générer</button>
+    <p id="result"></p>
+
+    <script>
+        function generateComplementaryReverseStrand() {
+            const dnaInput = document.getElementById('dnaInput').value.toUpperCase();
+            let complementaryStrand = '';
+
+            for (let i = 0; i < dnaInput.length; i++) {
+                switch (dnaInput[i]) {
+                    case 'A':
+                        complementaryStrand += 'T';
+                        break;
+                    case 'T':
+                        complementaryStrand += 'A';
+                        break;
+                    case 'C':
+                        complementaryStrand += 'G';
+                        break;
+                    case 'G':
+                        complementaryStrand += 'C';
+                        break;
+                    default:
+                        complementaryStrand += '?'; // Cas des caractères invalides
+                        break;
+                }
+            }
+
+            const reverseComplementaryStrand = complementaryStrand.split('').reverse().join('');
+            document.getElementById('result').textContent = 'Brin complémentaire inversé : ' + reverseComplementaryStrand;
+        }
+    </script>
+</body>
+</html>
